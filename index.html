@@ -326,23 +326,41 @@
             z-index: 1;
         }
         
+        /* Изменения для контейнера снежинок */
+        #snowflakes-container {
+            position: fixed; /* Фиксируем положение, чтобы не влияло на скролл */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Ширина на всю ширину вьюпорта */
+            height: 100vh; /* Высота на всю высоту вьюпорта */
+            overflow: hidden; /* Самое важное: обрезает всё, что выходит за пределы контейнера */
+            pointer-events: none; /* Снежинки не будут перехватывать события мыши */
+            z-index: 9999; /* Помещаем снежинки поверх всего остального */
+        }
+
+        /* Изменения для отдельных снежинок */
         .snowflake {
-            position: absolute;
+            position: absolute; /* Остается абсолютным относительно #snowflakes-container */
             color: white;
-            font-size: 0.8rem;
             animation: falling linear infinite;
-            pointer-events: none;
-            z-index: 2;
+            text-shadow: 0 0 5px rgba(255,255,255,0.7); /* Добавлено для лучшей видимости */
         }
         
+        /* Изменения для анимации падающих снежинок */
         @keyframes falling {
             0% {
-                transform: translateY(-10px) rotate(0deg);
-                opacity: 1;
+                transform: translateY(-10vh) rotate(0deg); /* Начинаем за пределами экрана сверху */
+                opacity: 0; /* Начинаем невидимыми */
+            }
+            10% {
+                opacity: 1; /* Полностью проявляемся */
+            }
+            90% {
+                opacity: 1; /* Остаемся видимыми */
             }
             100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
+                transform: translateY(110vh) rotate(360deg); /* Заканчиваем за пределами экрана снизу */
+                opacity: 0; /* Исчезаем */
             }
         }
         
@@ -1294,22 +1312,22 @@
             snowflake.innerHTML = '❄'; 
             snowflakesContainer.appendChild(snowflake);
 
-            const startX = Math.random() * window.innerWidth;
-            const animationDuration = Math.random() * 8 + 5; 
-            const animationDelay = Math.random() * 5; 
+            // Задаем случайные начальные свойства для снежинки
+            snowflake.style.left = `${Math.random() * 100}vw`; // Случайная позиция по всей ширине экрана
+            snowflake.style.fontSize = `${Math.random() * 0.8 + 0.5}rem`; // Размер от 0.5rem до 1.3rem
+            snowflake.style.animationDuration = `${Math.random() * 8 + 5}s`; // Длительность анимации от 5 до 13 секунд
+            snowflake.style.animationDelay = `${Math.random() * 5}s`; // Задержка начала анимации
 
-            snowflake.style.left = `${startX}px`;
-            snowflake.style.fontSize = `${Math.random() * 0.8 + 0.5}rem`; 
-            snowflake.style.animationDuration = `${animationDuration}s`;
-            snowflake.style.animationDelay = `${animationDelay}s`;
-            snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`; 
+            // Анимация translateY и opacity теперь полностью контролируется CSS @keyframes
+            // Нет необходимости устанавливать начальные transform или opacity здесь.
 
+            // Переработка снежинки после завершения анимации
             snowflake.addEventListener('animationiteration', () => {
-                snowflake.style.left = `${Math.random() * window.innerWidth}px`;
+                // Сбрасываем свойства, чтобы сымитировать новую снежинку
+                snowflake.style.left = `${Math.random() * 100}vw`;
                 snowflake.style.animationDuration = `${Math.random() * 8 + 5}s`;
                 snowflake.style.animationDelay = `${Math.random() * 5}s`;
-                snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`;
-                snowflake.style.transform = 'translateY(-10px) rotate(0deg)'; 
+                // transform будет сброшен анимацией на 0%
             });
         }
 
