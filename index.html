@@ -314,36 +314,7 @@
             z-index: 1;
         }
 
-        #snowflakes-container {
-            position: absolute; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2; 
-            overflow: hidden; 
-        }
-
-        .snowflake {
-            position: absolute;
-            color: white;
-            font-size: 0.8rem;
-            animation: falling linear infinite;
-            pointer-events: none;
-            z-index: 2; 
-        }
-
-        @keyframes falling {
-            0% {
-                transform: translateY(-10px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
+        /* Removed all snowflake related CSS */
 
         .mountain-icon {
             background: linear-gradient(135deg, #047857 0%, #10b981 100%);
@@ -405,7 +376,7 @@
             </div>
         </div>
 
-        <!-- Mobile menu - reverted to original dropdown style -->
+        <!-- Mobile menu -->
         <div class="lg:hidden bg-white shadow-xl rounded-lg mx-4 mt-2 py-2 hidden absolute w-[calc(100%-2rem)] z-50" id="mobile-menu">
             <a href="#about" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 transition">О нас</a>
             <a href="#cabins" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 transition">Домики</a>
@@ -418,7 +389,7 @@
     </header>
 
     <section class="hero min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-        <div id="snowflakes-container"></div>
+        <!-- Removed snowflakes-container div -->
 
         <div class="absolute inset-0 bg-black opacity-40"></div>
         <div class="container mx-auto px-4 relative z-10">
@@ -561,7 +532,7 @@
                         <i class="fas fa-map-marked-alt text-green-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3 heading-font">Локация</h3>
-                    <p class="text-gray-600">Уникальное расположение в 3 км от Алматы с потрясающими видами на горные вершины.</p>
+                    <p class="text-gray-600">Уникальное расположение в 30 км от Алматы с потрясающими видами на горные вершины.</p>
                 </div>
             </div>
         </div>
@@ -913,7 +884,7 @@
             <div class="flex flex-col lg:flex-row gap-12">
                 <div class="lg:w-1/2">
                     <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 heading-font">Как нас найти</h3>
-                    <p class="text-gray-600 mb-8">Наш глэмпинг расположен в 3 км от Алматы, в живописном ущелье Заилийского Алатау. Точные координаты и инструкцию по проезду мы высылаем после бронирования.</p>
+                    <p class="text-gray-600 mb-8">Наш глэмпинг расположен в 30 км от Алматы, в живописном ущелье Заилийского Алатау. Точные координаты и инструкцию по проезду мы высылаем после бронирования.</p>
 
                     <div class="space-y-6">
                         <div class="flex items-start">
@@ -1007,7 +978,7 @@
                     </div>
                     <div class="faq-content">
                         <div class="faq-content-inner text-gray-600">
-                            <p>Мы находимся в 3 км от Алматы. После бронирования мы высылаем подробную инструкцию с координатами и маршрутом. До нашего глэмпинга можно добраться на личном автомобиле (рекомендуется внедорожник) или заказать трансфер за дополнительную плату.</p>
+                            <p>Мы находимся в 30 км от Алматы. После бронирования мы высылаем подробную инструкцию с координатами и маршрутом. До нашего глэмпинга можно добраться на личном автомобиле (рекомендуется внедорожник) или заказать трансфер за дополнительную плату.</p>
                         </div>
                     </div>
                 </div>
@@ -1279,40 +1250,7 @@
             });
         });
 
-        const snowflakesContainer = document.getElementById('snowflakes-container');
-        const numberOfSnowflakes = 30; 
-
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.innerHTML = '❄'; 
-            snowflakesContainer.appendChild(snowflake);
-
-            const startX = Math.random() * snowflakesContainer.offsetWidth; 
-            const animationDuration = Math.random() * 8 + 5; 
-            const animationDelay = Math.random() * 5; 
-
-            snowflake.style.left = `${startX}px`;
-            snowflake.style.fontSize = `${Math.random() * 0.8 + 0.5}rem`;
-            snowflake.style.animationDuration = `${animationDuration}s`;
-            snowflake.style.animationDelay = `${animationDelay}s`;
-            snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`; 
-
-            snowflake.addEventListener('animationiteration', () => {
-                snowflake.style.left = `${Math.random() * snowflakesContainer.offsetWidth}px`;
-                snowflake.style.animationDuration = `${Math.random() * 8 + 5}s`;
-                snowflake.style.animationDelay = `${Math.random() * 5}s`;
-                snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`;
-                snowflake.style.transform = 'translateY(-10px) rotate(0deg)';
-            });
-        }
-
-        if (snowflakesContainer) {
-            for (let i = 0; i < numberOfSnowflakes; i++) {
-                createSnowflake();
-            }
-        }
-
+        // Removed all snowflake related JavaScript code
 
         const checkInInput = document.getElementById('check-in');
         const checkOutInput = document.getElementById('check-out');
