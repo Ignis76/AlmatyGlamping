@@ -10,7 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
+            overflow-x: hidden;
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
@@ -29,7 +30,7 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        
+
         .cabin-card {
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             perspective: 1000px;
@@ -45,7 +46,7 @@
         .cabin-card:hover .cabin-card-inner {
             transform: rotateY(5deg);
         }
-        
+
         .testimonial-card {
             transition: all 0.4s ease;
             background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.95) 100%);
@@ -56,14 +57,14 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        
+
         .booking-form {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
-        
+
         .animate-float {
             animation: float 6s ease-in-out infinite;
         }
@@ -72,14 +73,12 @@
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
-        
-        /* General input, select, textarea styling */
+
         input, select, textarea {
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.95);
             border: 1px solid rgba(209, 213, 219, 0.5);
-            /* Цвет текста при вводе или выборе значения: темно-серый (Tailwind gray-800) */
-            color: #1F2937; 
+            color: #1F2937;
         }
         input:focus, select:focus, textarea:focus {
             background: white;
@@ -87,7 +86,6 @@
             border-color: rgba(16, 185, 129, 0.5);
         }
 
-        /* Fix for Webkit browsers' autofill background and text color */
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
         input:-webkit-autofill:focus,
@@ -100,70 +98,61 @@
         select:-webkit-autofill:hover,
         select:-webkit-autofill:focus,
         select:-webkit-autofill:active {
-            -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.95) inset !important; /* Фон автозаполнения, чтобы соответствовал общему фону */
-            -webkit-text-fill-color: #1F2937 !important; /* Цвет текста автозаполнения: темно-серый */
+            -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.95) inset !important;
+            -webkit-text-fill-color: #1F2937 !important; 
         }
 
-        /* Цвет placeholder-текста для input и textarea: светло-серый (Tailwind gray-400) */
         input::placeholder,
         textarea::placeholder {
-            color: #9CA3AF; 
-            opacity: 1; /* Убедимся, что прозрачность не влияет на видимость */
+            color: #9CA3AF;
+            opacity: 1; 
         }
 
-        /* Цвет текста для начального значения в select ("Выберите домик"): светло-серый (Tailwind gray-400) */
         select:required:invalid {
-            color: #9CA3AF; 
+            color: #9CA3AF;
         }
-        /* Цвет текста для реальных опций в select (когда выбрано): темно-серый */
         select option {
-            color: #1F2937; 
+            color: #1F2937;
         }
-        /* Скрываем пустую опцию из выпадающего списка */
         select option[value=""][disabled] {
-            display: none; 
+            display: none;
         }
 
-        /* Цвет текста для полей ввода даты ("дд/мм/гггг"): изначально светло-серый */
         input[type="date"] {
-            color: #9CA3AF; 
+            color: #9CA3AF;
         }
-        /* Цвет текста для полей ввода даты, когда дата выбрана: темно-серый */
         input[type="date"]:valid {
-            color: #1F2937; 
+            color: #1F2937;
         }
-        /* Стили для элементов даты в Webkit-браузерах (Chrome, Safari, Edge) */
         input[type="date"]::-webkit-datetime-edit-text,
         input[type="date"]::-webkit-datetime-edit-month-field,
         input[type="date"]::-webkit-datetime-edit-day-field,
         input[type="date"]::-webkit-datetime-edit-year-field {
-            color: #9CA3AF; 
+            color: #9CA3AF;
         }
         input[type="date"]:valid::-webkit-datetime-edit-text,
         input[type="date"]:valid::-webkit-datetime-edit-month-field,
         input[type="date"]:valid::-webkit-datetime-edit-day-field,
         input[type="date"]:valid::-webkit-datetime-edit-year-field {
-            color: #1F2937; 
+            color: #1F2937;
         }
-        /* Стили для полей даты в Firefox */
         @-moz-document url-prefix() {
             input[type="date"] {
-                color: #9CA3AF; 
+                color: #9CA3AF;
             }
             input[type="date"]:valid {
-                color: #1F2937; 
+                color: #1F2937;
             }
         }
-        /* Стили для полей даты в Microsoft Edge */
         @supports (-ms-ime-align:auto) {
             input[type="date"] {
-                color: #9CA3AF; 
+                color: #9CA3AF;
             }
             input[type="date"]:valid {
-                color: #1F2937; 
+                color: #1F2937;
             }
         }
-        
+
         .nav-link {
             position: relative;
         }
@@ -180,7 +169,7 @@
         .nav-link:hover:after {
             width: 100%;
         }
-        
+
         .section-title:after {
             content: '';
             display: block;
@@ -190,14 +179,14 @@
             margin: 15px auto 0;
             border-radius: 3px;
         }
-        
+
         .parallax {
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
-        
+
         .btn-primary {
             background: linear-gradient(135deg, #10b981 0%, #047857 100%);
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
@@ -207,7 +196,7 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
         }
-        
+
         .feature-icon {
             width: 60px;
             height: 60px;
@@ -218,7 +207,7 @@
             border-radius: 50%;
             margin-bottom: 20px;
         }
-        
+
         .gallery-item {
             overflow: hidden;
             position: relative;
@@ -246,7 +235,7 @@
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
-        
+
         .faq-item {
             border-radius: 8px;
             overflow: hidden;
@@ -273,7 +262,7 @@
             padding: 0 20px 20px;
         }
         .faq-item.active .faq-content {
-            max-height: 300px; /* Adjust as needed for content */
+            max-height: 300px; 
         }
         .faq-item.active .faq-header {
             background-color: rgba(16, 185, 129, 0.05);
@@ -284,7 +273,7 @@
         .faq-item.active .faq-icon {
             transform: rotate(180deg);
         }
-        
+
         .scroll-top {
             position: fixed;
             bottom: 30px;
@@ -312,8 +301,7 @@
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
         }
-        
-        /* New mountain-themed elements */
+
         .mountain-shape {
             position: absolute;
             bottom: 0;
@@ -325,57 +313,50 @@
             background-repeat: no-repeat;
             z-index: 1;
         }
-        
-        /* Изменения для контейнера снежинок */
+
         #snowflakes-container {
-            position: fixed; /* Фиксируем положение, чтобы не влияло на скролл */
+            position: absolute; 
             top: 0;
             left: 0;
-            width: 100vw; /* Ширина на всю ширину вьюпорта */
-            height: 100vh; /* Высота на всю высоту вьюпорта */
-            overflow: hidden; /* Самое важное: обрезает всё, что выходит за пределы контейнера */
-            pointer-events: none; /* Снежинки не будут перехватывать события мыши */
-            z-index: 9999; /* Помещаем снежинки поверх всего остального */
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2; 
+            overflow: hidden; 
         }
 
-        /* Изменения для отдельных снежинок */
         .snowflake {
-            position: absolute; /* Остается абсолютным относительно #snowflakes-container */
+            position: absolute;
             color: white;
+            font-size: 0.8rem;
             animation: falling linear infinite;
-            text-shadow: 0 0 5px rgba(255,255,255,0.7); /* Добавлено для лучшей видимости */
+            pointer-events: none;
+            z-index: 2; 
         }
-        
-        /* Изменения для анимации падающих снежинок */
+
         @keyframes falling {
             0% {
-                transform: translateY(-10vh) rotate(0deg); /* Начинаем за пределами экрана сверху */
-                opacity: 0; /* Начинаем невидимыми */
-            }
-            10% {
-                opacity: 1; /* Полностью проявляемся */
-            }
-            90% {
-                opacity: 1; /* Остаемся видимыми */
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
             }
             100% {
-                transform: translateY(110vh) rotate(360deg); /* Заканчиваем за пределами экрана снизу */
-                opacity: 0; /* Исчезаем */
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
             }
         }
-        
+
         .mountain-icon {
             background: linear-gradient(135deg, #047857 0%, #10b981 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .mountain-badge {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
             border: 1px solid rgba(16, 185, 129, 0.3);
         }
-        
+
         @media (max-width: 768px) {
             .hero-content {
                 padding-top: 100px;
@@ -393,10 +374,6 @@
     </style>
 </head>
 <body class="bg-gray-50 text-gray-700">
-    <!-- Snowflakes animation -->
-    <div id="snowflakes-container"></div>
-    
-    <!-- Scroll to top button -->
     <div class="scroll-top">
         <i class="fas fa-arrow-up text-xl"></i>
     </div>
@@ -411,7 +388,7 @@
                     </div>
                     <h1 class="text-2xl font-bold text-white heading-font">Almaty Glamping</h1>
                 </div>
-                
+
                 <nav class="hidden lg:flex space-x-8 items-center">
                     <a href="#about" class="text-white hover:text-green-300 transition nav-link">О нас</a>
                     <a href="#cabins" class="text-white hover:text-green-300 transition nav-link">Домики</a>
@@ -421,14 +398,14 @@
                     <a href="#contact" class="text-white hover:text-green-300 transition nav-link">Контакты</a>
                     <a href="#booking" class="bg-white text-green-600 hover:bg-green-50 font-medium py-2 px-6 rounded-full transition duration-300 ml-4">Бронировать</a>
                 </nav>
-                
+
                 <button class="lg:hidden text-white focus:outline-none" id="menu-toggle">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
-        
-        <!-- Mobile menu -->
+
+        <!-- Mobile menu - reverted to original dropdown style -->
         <div class="lg:hidden bg-white shadow-xl rounded-lg mx-4 mt-2 py-2 hidden absolute w-[calc(100%-2rem)] z-50" id="mobile-menu">
             <a href="#about" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 transition">О нас</a>
             <a href="#cabins" class="block px-4 py-3 text-gray-700 hover:bg-gray-100 transition">Домики</a>
@@ -440,8 +417,9 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <div id="snowflakes-container"></div>
+
         <div class="absolute inset-0 bg-black opacity-40"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-4xl mx-auto text-center">
@@ -456,9 +434,9 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="mountain-shape"></div>
-        
+
         <div class="absolute bottom-10 left-0 right-0 text-center animate-bounce z-10">
             <a href="#about" class="text-white text-2xl">
                 <i class="fas fa-chevron-down"></i>
@@ -476,20 +454,19 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 heading-font section-title">Что такое глэмпинг?</h2>
                 <p class="text-gray-500 max-w-2xl mx-auto">Глэмпинг - это идеальное сочетание комфорта и единения с природой</p>
             </div>
-            
+
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2">
                     <div class="rounded-xl overflow-hidden shadow-2xl relative">
                         <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Глэмпинг в горах" class="w-full h-auto">
-                        <!-- Removed the absolute positioned badge from here -->
                     </div>
                 </div>
-                
+
                 <div class="lg:w-1/2">
                     <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 heading-font">Уникальный опыт в горах Алматы</h3>
                     <p class="text-gray-600 mb-6">Наш глэмпинг расположен в живописном ущелье недалеко от Алматы, где современный комфорт встречается с нетронутой природой. Мы создали пространство, где вы можете наслаждаться всеми преимуществами цивилизации, не жертвуя ощущением единения с природой.</p>
                     <p class="text-gray-600 mb-8">Каждый домик спроектирован с учетом панорамных видов, экологичных материалов и максимального комфорта. Мы предлагаем полностью оборудованные номера с кроватями премиум-класса, электричеством, отоплением и высокоскоростным Wi-Fi.</p>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="flex items-start">
                             <div class="feature-icon mr-4">
@@ -527,7 +504,6 @@
                                 <p class="text-gray-600">Высокоскоростной интернет</p>
                             </div>
                         </div>
-                        <!-- Added 1500m detail here -->
                         <div class="flex items-start">
                             <div class="feature-icon mr-4">
                                 <i class="fas fa-chart-area text-green-600 text-xl"></i>
@@ -537,7 +513,6 @@
                                 <p class="text-gray-600">1500м над уровнем моря</p>
                             </div>
                         </div>
-                        <!-- Added a new feature here -->
                         <div class="flex items-start">
                             <div class="feature-icon mr-4">
                                 <i class="fas fa-hiking text-green-600 text-xl"></i>
@@ -563,7 +538,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 heading-font section-title">Наши преимущества</h2>
                 <p class="text-gray-500 max-w-2xl mx-auto">Почему гости выбирают наш глэмпинг</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 text-center">
                     <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -572,7 +547,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-3 heading-font">Экологичность</h3>
                     <p class="text-gray-600">Мы используем экологичные материалы и технологии, минимизируя воздействие на окружающую среду.</p>
                 </div>
-                
+
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 text-center">
                     <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-heart text-green-600 text-2xl"></i>
@@ -580,13 +555,13 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-3 heading-font">Комфорт</h3>
                     <p class="text-gray-600">Все домики оборудованы для максимального комфорта, включая отопление и горячую воду.</p>
                 </div>
-                
+
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 text-center">
                     <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-map-marked-alt text-green-600 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3 heading-font">Локация</h3>
-                    <p class="text-gray-600">Уникальное расположение в 3 км от Алматы с потрясающими видами на горные вершины.</p>
+                    <p class="text-gray-600">Уникальное расположение в 30 км от Алматы с потрясающими видами на горные вершины.</p>
                 </div>
             </div>
         </div>
@@ -602,7 +577,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 heading-font section-title">Наши домики</h2>
                 <p class="text-gray-500 max-w-2xl mx-auto">Выберите идеальный вариант для вашего отдыха</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Cabin 1 -->
                 <div class="cabin-card">
@@ -636,14 +611,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Cabin 2 -->
                 <div class="cabin-card">
                     <div class="cabin-card-inner bg-white rounded-xl overflow-hidden shadow-lg h-full flex flex-col">
                         <div class="relative overflow-hidden h-64">
                             <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Люкс домик" class="w-full h-full object-cover transition duration-500">
                             <div class="absolute top-4 right-4 bg-white text-green-600 font-bold py-1 px-3 rounded-full text-sm shadow-md">
-                                25 000  ₸/ночь
+                                25 000 ₸/ночь
                             </div>
                         </div>
                         <div class="p-6 flex-grow">
@@ -673,14 +648,14 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Cabin 3 -->
                 <div class="cabin-card">
                     <div class="cabin-card-inner bg-white rounded-xl overflow-hidden shadow-lg h-full flex flex-col">
                         <div class="relative overflow-hidden h-64">
                             <img src="https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Семейный домик" class="w-full h-full object-cover transition duration-500">
                             <div class="absolute top-4 right-4 bg-white text-green-600 font-bold py-1 px-3 rounded-full text-sm shadow-md">
-                                35 000  ₸/ночь
+                                35 000 ₸/ночь
                             </div>
                         </div>
                         <div class="p-6 flex-grow">
@@ -736,7 +711,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 heading-font section-title">Галерея</h2>
                 <p class="text-gray-500 max-w-2xl mx-auto">Окунитесь в атмосферу нашего глэмпинга</p>
             </div>
-            
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="gallery-item rounded-lg">
                     <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Горы Алматы" class="w-full h-64 object-cover">
@@ -800,7 +775,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 heading-font section-title">Отзывы наших гостей</h2>
                 <p class="text-gray-500 max-w-2xl mx-auto">Что говорят наши гости о своем опыте</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Review 1 -->
                 <div class="testimonial-card p-8 rounded-xl">
@@ -822,7 +797,7 @@
                         <i class="fas fa-calendar-alt mr-2"></i> 15 мая 2025
                     </div>
                 </div>
-                
+
                 <!-- Review 2 -->
                 <div class="testimonial-card p-8 rounded-xl">
                     <div class="flex items-center mb-6">
@@ -843,7 +818,7 @@
                         <i class="fas fa-calendar-alt mr-2"></i> 3 июня 2025
                     </div>
                 </div>
-                
+
                 <!-- Review 3 -->
                 <div class="testimonial-card p-8 rounded-xl">
                     <div class="flex items-center mb-6">
@@ -878,7 +853,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 heading-font">Забронируйте свой отдых</h2>
                 <p class="text-green-100 max-w-2xl mx-auto">Оставьте заявку и мы свяжемся с вами для подтверждения бронирования</p>
             </div>
-            
+
             <div class="max-w-4xl mx-auto">
                 <div class="booking-form rounded-xl p-8 md:p-10">
                     <form id="reservation-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -934,12 +909,12 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 heading-font section-title">Контакты</h2>
                 <p class="text-gray-500 max-w-2xl mx-auto">Свяжитесь с нами любым удобным способом</p>
             </div>
-            
+
             <div class="flex flex-col lg:flex-row gap-12">
                 <div class="lg:w-1/2">
                     <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 heading-font">Как нас найти</h3>
-                    <p class="text-gray-600 mb-8">Наш глэмпинг расположен в 3 км от Алматы, в живописном ущелье Заилийского Алатау. Точные координаты и инструкцию по проезду мы высылаем после бронирования.</p>
-                    
+                    <p class="text-gray-600 mb-8">Наш глэмпинг расположен в 30 км от Алматы, в живописном ущелье Заилийского Алатау. Точные координаты и инструкцию по проезду мы высылаем после бронирования.</p>
+
                     <div class="space-y-6">
                         <div class="flex items-start">
                             <div class="bg-green-100 p-3 rounded-lg mr-4">
@@ -950,7 +925,7 @@
                                 <p class="text-gray-600">Иле-Алатауский национальный парк, Алматинская область</p>
                             </div>
                         </div>
-                                                
+
                         <div class="flex items-start">
                             <div class="bg-green-100 p-3 rounded-lg mr-4">
                                 <i class="fas fa-phone-alt text-green-600 text-xl"></i>
@@ -960,7 +935,7 @@
                                 <p class="text-gray-600">+7 (775) 373-09-73</p>
                             </div>
                         </div>
-                                                
+
                         <div class="flex items-start">
                             <div class="bg-green-100 p-3 rounded-lg mr-4">
                                 <i class="fas fa-envelope text-green-600 text-xl"></i>
@@ -970,7 +945,7 @@
                                 <p class="text-gray-600">info@almatyglamping.kz</p>
                             </div>
                         </div>
-                                                
+
                         <div class="flex items-start">
                             <div class="bg-green-100 p-3 rounded-lg mr-4">
                                 <i class="fas fa-clock text-green-600 text-xl"></i>
@@ -981,7 +956,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mt-8">
                         <h4 class="font-bold text-gray-800 mb-4">Мы в социальных сетях</h4>
                         <div class="flex space-x-4">
@@ -1000,9 +975,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="lg:w-1/2">
-                    <div class="h-full w-full rounded-xl overflow-hidden shadow-xl">
+                    <div class="h-[300px] lg:h-full w-full rounded-xl overflow-hidden shadow-xl">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2907.715372366489!2d76.94521531548392!3d43.21438687913894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836e7d16c5cbab%3A0x3d44644f7c4b9f1b!2sIle-Alatau%20National%20Park!5e0!3m2!1sen!2skz!4v1620000000000!5m2!1sen!2skz" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
@@ -1020,7 +995,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 heading-font section-title">Часто задаваемые вопросы</h2>
                 <p class="text-gray-500 max-w-2xl mx-auto">Ответы на самые популярные вопросы</p>
             </div>
-            
+
             <div class="max-w-3xl mx-auto">
                 <!-- FAQ Item 1 -->
                 <div class="faq-item bg-white rounded-lg">
@@ -1032,11 +1007,11 @@
                     </div>
                     <div class="faq-content">
                         <div class="faq-content-inner text-gray-600">
-                            <p>Мы находимся в 3 км от Алматы. После бронирования мы высылаем подробную инструкцию с координатами и маршрутом. До нашего глэмпинга можно добраться на личном автомобиле (рекомендуется внедорожник) или заказать трансфер за дополнительную плату.</p>
+                            <p>Мы находимся в 30 км от Алматы. После бронирования мы высылаем подробную инструкцию с координатами и маршрутом. До нашего глэмпинга можно добраться на личном автомобиле (рекомендуется внедорожник) или заказать трансфер за дополнительную плату.</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- FAQ Item 2 -->
                 <div class="faq-item bg-white rounded-lg">
                     <div class="faq-header">
@@ -1051,7 +1026,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- FAQ Item 3 -->
                 <div class="faq-item bg-white rounded-lg">
                     <div class="faq-header">
@@ -1066,7 +1041,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- FAQ Item 4 -->
                 <div class="faq-item bg-white rounded-lg">
                     <div class="faq-header">
@@ -1081,7 +1056,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- FAQ Item 5 -->
                 <div class="faq-item bg-white rounded-lg">
                     <div class="faq-header">
@@ -1128,7 +1103,7 @@
                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-whatsapp text-xl"></i></a>
                     </div>
                 </div>
-                                
+
                 <div>
                     <h4 class="text-lg font-bold mb-4 heading-font">Навигация</h4>
                     <ul class="space-y-2">
@@ -1139,7 +1114,7 @@
                         <li><a href="#faq" class="text-gray-400 hover:text-white transition">FAQ</a></li>
                     </ul>
                 </div>
-                                
+
                 <div>
                     <h4 class="text-lg font-bold mb-4 heading-font">Контакты</h4>
                     <ul class="space-y-2 text-gray-400">
@@ -1157,7 +1132,7 @@
                         </li>
                     </ul>
                 </div>
-                                
+
                 <div>
                     <h4 class="text-lg font-bold mb-4 heading-font">Подписаться на новости</h4>
                     <p class="text-gray-400 mb-4">Будьте в курсе специальных предложений</p>
@@ -1169,7 +1144,7 @@
                     </form>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
                 <p>© 2025 Almaty Glamping. Все права защищены.</p>
             </div>
@@ -1197,18 +1172,20 @@
     </div>
 
     <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        mobileMenu.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                document.getElementById('mobile-menu').classList.add('hidden');
-                
+                mobileMenu.classList.add('hidden');
+
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
+                    e.preventDefault(); 
                     window.scrollTo({
                         top: target.offsetTop - 80, 
                         behavior: 'smooth'
@@ -1217,7 +1194,6 @@
             });
         });
 
-        // FAQ toggle
         document.querySelectorAll('.faq-item').forEach(item => {
             const header = item.querySelector('.faq-header');
             header.addEventListener('click', function() {
@@ -1228,8 +1204,8 @@
         document.querySelectorAll('.book-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const cabinType = this.getAttribute('data-cabin');
-                document.getElementById('cabin').value = cabinType; 
-                
+                document.getElementById('cabin').value = cabinType;
+
                 document.getElementById('booking').scrollIntoView({
                     behavior: 'smooth'
                 });
@@ -1254,7 +1230,7 @@
             setTimeout(() => {
                 modalContent.classList.remove('opacity-0', 'scale-95');
                 modalContent.classList.add('opacity-100', 'scale-100');
-            }, 10); 
+            }, 10);
 
             reservationForm.reset();
         });
@@ -1278,7 +1254,7 @@
 
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 50) { 
                 header.classList.add('bg-gray-900', 'bg-opacity-90', 'shadow-lg', 'py-3');
                 header.classList.remove('py-4');
             } else {
@@ -1312,28 +1288,31 @@
             snowflake.innerHTML = '❄'; 
             snowflakesContainer.appendChild(snowflake);
 
-            // Задаем случайные начальные свойства для снежинки
-            snowflake.style.left = `${Math.random() * 100}vw`; // Случайная позиция по всей ширине экрана
-            snowflake.style.fontSize = `${Math.random() * 0.8 + 0.5}rem`; // Размер от 0.5rem до 1.3rem
-            snowflake.style.animationDuration = `${Math.random() * 8 + 5}s`; // Длительность анимации от 5 до 13 секунд
-            snowflake.style.animationDelay = `${Math.random() * 5}s`; // Задержка начала анимации
+            const startX = Math.random() * snowflakesContainer.offsetWidth; 
+            const animationDuration = Math.random() * 8 + 5; 
+            const animationDelay = Math.random() * 5; 
 
-            // Анимация translateY и opacity теперь полностью контролируется CSS @keyframes
-            // Нет необходимости устанавливать начальные transform или opacity здесь.
+            snowflake.style.left = `${startX}px`;
+            snowflake.style.fontSize = `${Math.random() * 0.8 + 0.5}rem`;
+            snowflake.style.animationDuration = `${animationDuration}s`;
+            snowflake.style.animationDelay = `${animationDelay}s`;
+            snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`; 
 
-            // Переработка снежинки после завершения анимации
             snowflake.addEventListener('animationiteration', () => {
-                // Сбрасываем свойства, чтобы сымитировать новую снежинку
-                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.left = `${Math.random() * snowflakesContainer.offsetWidth}px`;
                 snowflake.style.animationDuration = `${Math.random() * 8 + 5}s`;
                 snowflake.style.animationDelay = `${Math.random() * 5}s`;
-                // transform будет сброшен анимацией на 0%
+                snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`;
+                snowflake.style.transform = 'translateY(-10px) rotate(0deg)';
             });
         }
 
-        for (let i = 0; i < numberOfSnowflakes; i++) {
-            createSnowflake();
+        if (snowflakesContainer) {
+            for (let i = 0; i < numberOfSnowflakes; i++) {
+                createSnowflake();
+            }
         }
+
 
         const checkInInput = document.getElementById('check-in');
         const checkOutInput = document.getElementById('check-out');
@@ -1357,6 +1336,18 @@
 
         checkOutInput.min = getTodayDate();
 
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
